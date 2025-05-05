@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hasil Evaluasi</title>
+</head>
+<body>
+    <h1>Hasil Evaluasi Risiko Stunting</h1>
+
+    <h3>Faktor Ibu:</h3>
+    <p>{{ faktor_ibu }}</p>
+
+    <h3>Faktor Lingkungan:</h3>
+    <p>{{ faktor_lingkungan }}</p>
+
+    <h3>Faktor Pemeriksaan:</h3>
+    <p>{{ faktor_pemeriksaan }}</p>
+
+    <h3>Faktor Perencanaan:</h3>
+    <p>{{ faktor_perencanaan }}</p>
+
+    <hr>
+    <h2>🩺 Kesimpulan Risiko Stunting: <u>{{ risiko }}</u></h2>
+
+    <hr>
+    <h3>Fakta Lengkap:</h3>
+    <ul>
+        {% for key, value in fakta.items() %}
+            <li><strong>{{ key.replace('_', ' ')|capitalize }}</strong>: {{ value }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('reset') }}">🔁 Evaluasi Ulang</a>
+</body>
+</html>

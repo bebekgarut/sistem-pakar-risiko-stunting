@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Risiko Stunting</title>
+    <link rel="stylesheet" href="" />
+    <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="p-4">
+      <p class="text-center text-4xl font-bold">Risiko Stunting - Sistem Pakar</p>
+      <div>
+        {% if not fakta %}
+          <div>
+            <form method="POST">
+              <h3>Masukkan Data Awal:</h3>
+              <label>Usia Ibu:</label>
+              <input type="number" name="usia_ibu" required /><br />
+
+              <label>IMT:</label>
+              <input type="number" name="imt" step="0.1" required /><br />
+
+              <label>Riwayat Penyakit (ada/tidak):</label>
+              <input type="text" name="riwayat_penyakit" required /><br />
+
+              <label>terpapar</label>
+              <input type="text" name="terpapar" /><br />
+
+              <button type="submit" name="init">Simpan dan Lanjut</button>
+            </form>
+          </div>
+        {% elif pertanyaan %}
+          <form method="POST">
+            <h3>Pertanyaan:</h3>
+            <label>{{ pertanyaan.replace('_', ' ')|capitalize }}:</label>
+            <input type="text" name="nilai" required />
+            <input type="hidden" name="premis" value="{{ pertanyaan }}" />
+            <button type="submit">Simpan Jawaban</button>
+          </form>
+        {% else %}
+          <p>Memproses data...</p>
+        {% endif %}
+
+        {% if fakta %}
+          <hr />
+          <h3>Fakta Saat Ini:</h3>
+          <ul>
+            {% for key, value in fakta.items() %}
+              <li>
+                <strong>{{ key.replace('_', ' ')|capitalize }}</strong>: {{ value }}
+              </li>
+            {% endfor %}
+          </ul>
+          <a href="{{ url_for('reset') }}">Reset Data</a>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

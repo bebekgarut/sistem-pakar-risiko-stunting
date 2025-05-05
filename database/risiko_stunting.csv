@@ -1,0 +1,22 @@
+rule,faktor_ibu,faktor_lingkungan,faktor_pemeriksaan,faktor_perencanaan,risiko_stunting
+R1,aman,baik,ok,ok,tidak berisiko
+R2,aman,baik,ok,not-ok,rendah
+R3,aman,baik/sedang,not-ok,ok,rendah
+R4,aman,baik/sedang,not-ok,not-ok,sedang
+R5,aman,sedang,ok,-,rendah
+R6,aman,buruk,-,-,sedang
+R7,waspada,baik,ok,ok,rendah
+R8,waspada,baik,ok,not-ok,sedang
+R9,waspada,baik/sedang,not-ok,ok,sedang
+R10,waspada,baik/sedang,not-ok,not-ok,tinggi
+R11,waspada,sedang,not-ok,-,sedang
+R12,waspada,buruk,ok,ok,sedang
+R13,waspada,buruk,ok,not-ok,tinggi
+R14,waspada,buruk,not-ok,-,tinggi
+R15,berisiko,baik,not-ok,-,sedang
+R16,berisiko,baik,not-ok,ok,sedang
+R17,berisiko,baik,not-ok,not-ok,tinggi
+R18,berisiko,sedang,ok,ok,sedang
+R19,berisiko,sedang,ok,not-ok,tinggi
+R20,berisiko,sedang,not-ok,-,tinggi
+R21,berisiko,buruk,-,-,tinggi
