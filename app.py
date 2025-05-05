@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, session
 import csv
 
 app = Flask(__name__)
-app.secret_key = 'faktor_isfsbadfsbgsusdgs'
+app.secret_key = 'dsgf'
 
 def load_rules_from(filepath):
     rules = []
@@ -52,6 +52,7 @@ def index():
             for key in request.form:
                 if key != 'init':
                     session['fakta'][key] = request.form[key]
+            session['init_done'] = True 
             session.modified = True
             return redirect(url_for('index'))
         else:
@@ -60,6 +61,9 @@ def index():
             session['fakta'][premis] = nilai
             session.modified = True
             return redirect(url_for('index'))
+        
+    if not session.get('init_done'):
+        return render_template('index.jinja', fakta=fakta, pertanyaan=None, init_form=True)
 
     # Load rules dari semua kategori
     rules_ibu = load_rules_from('./database/faktor_ibu.csv')
@@ -84,6 +88,7 @@ def index():
     faktor_perencanaan, tanya4 = evaluasi_faktor(fakta, rules_perencanaan,
         ['jarak_kehamilan', 'pemakaian_kb'], 'faktor_perencanaan')
     if tanya4: return render_template('index.jinja', fakta=fakta, pertanyaan=tanya4)
+    
 
     print("faktor ibu ", faktor_ibu)
     print("faktor lingkungan ", faktor_lingkungan)
@@ -108,7 +113,6 @@ def index():
         if cocok_semua:
             risiko = rule['risiko_stunting']
             break
-        
     print(risiko)
 
     return render_template('hasil.jinja',
