@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, session
 import csv
 
 app = Flask(__name__)
-app.secret_key = 'faktor_ibadfsbgsusdgs'
+app.secret_key = 'faktor_isfsbadfsbgsusdgs'
 
 def load_rules_from(filepath):
     rules = []
@@ -50,7 +50,8 @@ def index():
     if request.method == 'POST':
         if 'init' in request.form:
             for key in request.form:
-                session['fakta'][key] = request.form[key]
+                if key != 'init':
+                    session['fakta'][key] = request.form[key]
             session.modified = True
             return redirect(url_for('index'))
         else:
@@ -84,7 +85,6 @@ def index():
         ['jarak_kehamilan', 'pemakaian_kb'], 'faktor_perencanaan')
     if tanya4: return render_template('index.jinja', fakta=fakta, pertanyaan=tanya4)
 
-    # Simpulkan hasil akhir
     print("faktor ibu ", faktor_ibu)
     print("faktor lingkungan ", faktor_lingkungan)
     print("faktor pemeriksaan ", faktor_pemeriksaan)

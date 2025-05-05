@@ -5,27 +5,123 @@
     <link rel="stylesheet" href="" />
     <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet" />
   </head>
-  <body>
+  <body class="bg-orange-200">
     <div class="p-4">
-      <p class="text-center text-4xl font-bold">Risiko Stunting - Sistem Pakar</p>
+      <p class="text-center text-4xl font-bold mb-4">Risiko Stunting - Sistem Pakar</p>
       <div>
         {% if not fakta %}
           <div>
             <form method="POST">
-              <h3>Masukkan Data Awal:</h3>
-              <label>Usia Ibu:</label>
-              <input type="number" name="usia_ibu" required /><br />
+              <div class="grid grid-cols-5 gap-6 mb-4">
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/usia ibu.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Usia Ibu</label>
+                  <input type="number" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400" placeholder="Usia Ibu" name="usia_ibu" />
+                </div>
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/imt.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Index Masa Tubuh</label>
+                  <input type="number" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400" placeholder="Index Masa Tubuh" name="imt" />
+                </div>
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/riwayat penyakit.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Riwayat Penyakit</label>
+                  <select name="riwayat_penyakit" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="ada">Ada</option>
+                    <option value="tidak ada">Tidak Ada</option>
+                  </select>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/konsumsi makanan.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Konsumsi Makanan</label>
+                  <select name="konsumsi_makanan" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="gizi seimbang">Gizi Seimbang</option>
+                    <option value="rendah nutrisi">Rendah Nutrisi</option>
+                  </select>
+                </div>
 
-              <label>IMT:</label>
-              <input type="number" name="imt" step="0.1" required /><br />
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/kestabilan mental.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Kestabilan Mental</label>
+                  <select name="" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
+                    <option value="ketidakstabilan_mental" disabled selected>Pilih</option>
+                    <option value="stabil">Stabil</option>
+                    <option value="tidak stabil">Tidak Stabil</option>
+                  </select>
+                </div>
 
-              <label>Riwayat Penyakit (ada/tidak):</label>
-              <input type="text" name="riwayat_penyakit" required /><br />
-
-              <label>terpapar</label>
-              <input type="text" name="terpapar" /><br />
-
-              <button type="submit" name="init">Simpan dan Lanjut</button>
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/terpapar.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Terpapar Asap Rokok</label>
+                  <select name="terpapar" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="aktif">Aktif</option>
+                    <option value="pasif">Pasif</option>
+                    <option value="tidak terpapar">Tidak Terpapar</option>
+                  </select>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/sanitasi.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Sanitasi & Kebersihan</label>
+                  <select name="sanitasi" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="baik">Baik</option>
+                    <option value="buruk">Buruk</option>
+                  </select>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/kualitas air.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Kualitas Air</label>
+                  <select name="kualitas_air" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="bersih">Bersih</option>
+                    <option value="tidak bersih">Tidak Bersih</option>
+                  </select>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/usia kehamilan.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Usia Kehamilan</label>
+                  <select name="usia kehamilan" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="trimester 1">Trimester 1</option>
+                    <option value="trimester 2">Trimester 2</option>
+                    <option value="trimester 3">Trimester 3</option>
+                  </select>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/frekuensi.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Frekuensi Pemeriksaan</label>
+                  <input type="number" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400" placeholder="Pada trimester sekarang" name="frekuensi_pemeriksaan" />
+                </div>
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl col-start-2">
+                  <img src="{{ url_for('static', filename='img/konsumsi suplemen.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Konsumsi Suplemen</label>
+                  <select name="konsumsi_suplemen" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="ya">Ya</option>
+                    <option value="tidak">Tidak</option>
+                  </select>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/jarak kehamilan.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Jarak Kehamilan</label>
+                  <input type="number" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400" placeholder="Jarak Kehamilan" name="jarak_kehamilan" />
+                </div>
+                <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/pemakaian kb.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-amber-600 font-semibold text-lg">Pemakaian KB</label>
+                  <select name="pemakaian kb" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="ya">Ya</option>
+                    <option value="tidak">Tidak</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex justify-center items-center">
+                <button type="submit" name="init" class="px-2 py-1 bg-amber-700 rounded-lg border-2 border-amber-50 text-white text-lg font-semibold">Simpan dan Lanjut</button>
+              </div>
             </form>
           </div>
         {% elif pertanyaan %}
@@ -45,9 +141,11 @@
           <h3>Fakta Saat Ini:</h3>
           <ul>
             {% for key, value in fakta.items() %}
-              <li>
-                <strong>{{ key.replace('_', ' ')|capitalize }}</strong>: {{ value }}
-              </li>
+              {% if value %}
+                <li>
+                  <strong>{{ key.replace('_', ' ')|capitalize }}</strong>: {{ value }}
+                </li>
+              {% endif %}
             {% endfor %}
           </ul>
           <a href="{{ url_for('reset') }}">Reset Data</a>
