@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, session
 import csv
 
 app = Flask(__name__)
-app.secret_key = 'dsgf'
+app.secret_key = 'dhsgf'
 
 def load_rules_from(filepath):
     rules = []
@@ -34,7 +34,7 @@ def evaluasi_faktor(fakta, rules, premis_list, hasil_key):
                 continue
             hasil = cocok(fakta, premis, rule[premis])
             if hasil is None:
-                return None, premis  # Belum diketahui
+                return None, premis 
             elif not hasil:
                 cocok_semua = False
                 break
@@ -65,14 +65,12 @@ def index():
     if not session.get('init_done'):
         return render_template('index.jinja', fakta=fakta, pertanyaan=None, init_form=True)
 
-    # Load rules dari semua kategori
     rules_ibu = load_rules_from('./database/faktor_ibu.csv')
     rules_lingkungan = load_rules_from('./database/faktor_lingkungan.csv')
     rules_pemeriksaan = load_rules_from('./database/faktor_pemeriksaan.csv')
     rules_perencanaan = load_rules_from('./database/faktor_perencanaan.csv')
     rules_risiko = load_rules_from('./database/risiko_stunting.csv')
 
-    # Evaluasi setiap faktor
     faktor_ibu, tanya1 = evaluasi_faktor(fakta, rules_ibu,
         ['usia_ibu', 'imt', 'riwayat_penyakit', 'konsumsi_makanan', 'ketidakstabilan_mental'], 'faktor_ibu')
     if tanya1: return render_template('index.jinja', fakta=fakta, pertanyaan=tanya1)
@@ -127,6 +125,7 @@ def index():
 @app.route('/reset')
 def reset():
     session.pop('fakta', None)
+    session.pop('init_done', None)
     return redirect(url_for('index'))
 
 if __name__ == '__main__':

@@ -3,35 +3,54 @@
   <head>
     <title>Hasil Evaluasi</title>
     <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet" />
   </head>
   <body class="bg-orange-200">
-    <h1>Hasil Evaluasi Risiko Stunting</h1>
+    <div class="p-5">
+      <p class="text-center text-6xl mb-8">Hasil Evaluasi Risiko Stunting</p>
 
-    <h3>Faktor Ibu:</h3>
-    <p>{{ faktor_ibu }}</p>
+      <div class="flex justify-center items-center flex-col space-y-2 mb-10">
+        <hr class="w-1/2" />
+        <p class="text-center font-semibold text-2xl">
+          🩺 Risiko Stunting: <strong>{{ risiko }}</strong>
+        </p>
+        <hr class="w-1/2" />
+      </div>
 
-    <h3>Faktor Lingkungan:</h3>
-    <p>{{ faktor_lingkungan }}</p>
+      <div class="grid grid-cols-4 mb-5">
+        <div class="flex justify-center items-center flex-col">
+          <p class="text-xl">Faktor Ibu :</p>
+          <p class="text-xl font-semibold">{{ faktor_ibu }}</p>
+        </div>
 
-    <h3>Faktor Pemeriksaan:</h3>
-    <p>{{ faktor_pemeriksaan }}</p>
+        <div class="flex justify-center items-center flex-col">
+          <p class="text-xl">Faktor Lingkungan:</p>
+          <p class="text-xl font-semibold">{{ faktor_lingkungan }}</p>
+        </div>
 
-    <h3>Faktor Perencanaan:</h3>
-    <p>{{ faktor_perencanaan }}</p>
+        <div class="flex justify-center items-center flex-col">
+          <p class="text-xl">Faktor Pemeriksaan:</p>
+          <p class="text-xl font-semibold">{{ faktor_pemeriksaan }}</p>
+        </div>
+        <div class="flex justify-center items-center flex-col">
+          <p class="text-xl">Faktor Perencanaan:</p>
+          <p class="text-xl font-semibold">{{ faktor_perencanaan }}</p>
+        </div>
+      </div>
 
-    <hr />
-    <h2>🩺 Kesimpulan Risiko Stunting: <u>{{ risiko }}</u></h2>
-
-    <hr />
-    <h3>Fakta Lengkap:</h3>
-    <ul>
-      {% for key, value in fakta.items() %}
-        <li>
-          <strong>{{ key.replace('_', ' ')|capitalize }}</strong>: {{ value }}
-        </li>
-      {% endfor %}
-    </ul>
-
-    <a href="{{ url_for('reset') }}">🔁 Evaluasi Ulang</a>
+      <div class="flex justify-center items-center mb-10">
+        <a href="{{ url_for('reset') }}" class="px-2 py-1 bg-amber-700 rounded-lg border-2 border-amber-50 text-white text-lg font-semibold"><i class="fas fa-refresh mr-2"></i>Evaluasi Ulang</a>
+      </div>
+      <div class="flex items-center justify-center flex-col">
+        <p class="text-xl">Fakta Lengkap:</p>
+        <ul>
+          {% for key, value in fakta.items() %}
+            <li>
+              - <strong>{{ key.replace('_', ' ')|capitalize }}</strong>: {{ value }}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
