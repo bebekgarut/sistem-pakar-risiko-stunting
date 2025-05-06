@@ -1,3 +1,3 @@
 rule,jarak_kehamilan,pemakaian_kb,faktor_perencanaan
-R81,<5,-,not-ok
-R82,>4,-,ok
+R82,<5,-,not-ok
+R83,>4,-,ok

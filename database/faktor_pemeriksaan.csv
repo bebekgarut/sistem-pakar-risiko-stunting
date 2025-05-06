@@ -1,10 +1,10 @@
 rule,usia_kehamilan,frekuensi_pemeriksaan,konsumsi_suplemen,faktor_pemeriksaan
-R74,trimester 1,>1,ya,ok
-R75,trimester 1,>1,tidak,not_ok
-R76,trimester 1,<2,-,not_ok
-R77,trimester 2,>0,ya,ok
-R78,trimester 2,>0),tidak,not_ok
-R79,trimester 2,<1,-,not_ok
-R80,trimester 3,>2,ya,ok
-R81,trimester 3,>2),tidak,not_ok
-R82,trimester 3,<3,-,not_ok
+R73,trimester 1,>1,ya,ok
+R74,trimester 1,>1,tidak,not_ok
+R75,trimester 1,<2,-,not_ok
+R76,trimester 2,>0,ya,ok
+R77,trimester 2,>0),tidak,not_ok
+R78,trimester 2,<1,-,not_ok
+R79,trimester 3,>2,ya,ok
+R80,trimester 3,>2),tidak,not_ok
+R81,trimester 3,<3,-,not_ok

@@ -1,9 +1,9 @@
 rule,terpapar,sanitasi,kualitas_air,faktor_lingkungan
-R66,tidak terpapar,baik,bersih,baik
-R67,tidak terpapar,baik,tidak bersih,sedang
-R68,tidak terpapar,buruk,bersih,sedang
-R69,tidak terpapar,buruk,tidak bersih,buruk
-R70,pasif,baik,bersih,sedang
-R71,pasif,baik,tidak bersih,buruk
-R72,pasif,buruk,tidak bersih,buruk
-R73,aktif,-,-,buruk
+R65,tidak terpapar,baik,bersih,baik
+R66,tidak terpapar,baik,tidak bersih,sedang
+R67,tidak terpapar,buruk,bersih,sedang
+R68,tidak terpapar,buruk,tidak bersih,buruk
+R69,pasif,baik,bersih,sedang
+R70,pasif,baik,tidak bersih,buruk
+R71,pasif,buruk,-,buruk
+R72,aktif,-,-,buruk
