@@ -58,6 +58,7 @@ def index():
         else:
             premis = request.form['premis']
             nilai = request.form['nilai']
+            cf = float(request.form['cf'])
             session['fakta'][premis] = nilai
             session.modified = True
             return redirect(url_for('index'))

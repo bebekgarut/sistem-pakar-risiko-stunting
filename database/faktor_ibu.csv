@@ -1,44 +1,44 @@
-rule,usia_ibu,imt,riwayat_penyakit,konsumsi_makanan,ketidakstabilan_mental,faktor_ibu
-R22,<20,<18.5,ada,-,-,berisiko
-R23,<20,<18.5,tidak ada,gizi seimbang,stabil,waspada
-R24,<20,<18.5,tidak ada,gizi seimbang,tidak stabil,berisiko
-R25,<20,<18.5,tidak ada,rendah nutrisi,-,berisiko
-R26,<20,18.5-24.9,ada,gizi seimbang,stabil,aman
-R27,<20,18.5-24.9,ada,gizi seimbang,tidak stabil,berisiko
-R28,<20,18.5-24.9,ada,rendah nutrisi,-,berisiko
-R29,<20,18.5-24.9,tidak ada,gizi seimbang,stabil,aman
-R30,<20,18.5-24.9,tidak ada,gizi seimbang,tidak stabil,waspada
-R31,<20,18.5-24.9,tidak ada,rendah nutrisi,stabil,waspada
-R32,<20,18.5-24.9,tidak ada,rendah nutrisi,tidak stabil,berisiko
-R33,<20,>24.9,ada,-,-,berisiko
-R34,<20,>24.9,tidak ada,gizi seimbang,stabil,waspada
-R35,<20,>24.9,tidak ada,gizi seimbang,tidak stabil,berisiko
-R36,<20,>24.9,tidak ada,rendah nutrisi,-,berisiko
-R37,20-35,<18.5,ada/tidak ada,gizi seimbang,stabil,waspada
-R38,20-35,<18.5,ada/tidak ada,gizi seimbang,tidak stabil,berisiko
-R39,20-35,<18.5,ada/tidak ada,rendah nutrisi,-,berisiko
-R40,20-35,18.5-24.9,ada,gizi seimbang,-,waspada
-R41,20-35,18.5-24.9,ada,rendah nutrisi,stabil,waspada
-R42,20-35,18.5-24.9,ada,rendah nutrisi,tidak stabil,berisiko
-R43,20-35,18.5-24.9,tidak ada,gizi seimbang,tidak stabil,waspada
-R44,20-35,18.5-24.9,tidak ada,rendah nutrisi,-,waspada
-R45,20-35,>24.9,ada,gizi seimbang,stabil,waspada
-R46,20-35,>24.9,ada,gizi seimbang,tidak stabil,berisiko
-R47,20-35,>24.9,ada,rendah nutrisi,-,berisiko
-R48,20-35,>24.9,tidak ada,gizi seimbang,stabil,aman
-R49,20-35,>24.9,tidak ada,gizi seimbang,tidak stabil,waspada
-R50,20-35,>24.9,tidak ada,rendah nutrisi,stabil,waspada
-R51,20-35,>24.9,tidak ada,rendah nutrisi,tidak stabil,berisiko
-R52,>35,<18.5,ada,gizi seimbang,-,berisiko
-R53,>35,<18.5,tidak ada,gizi seimbang,stabil,waspada
-R54,>35,<18.5,tidak ada,gizi seimbang,tidak stabil,berisiko
-R55,>35,<18.5,tidak ada,rendah nutrisi,-,berisiko
-R56,>35,18.5-24.9,ada,gizi seimbang,stabil,waspada
-R57,>35,18.5-24.9,ada,gizi seimbang,tidak stabil,berisiko
-R58,>35,18.5-24.9,ada,rendah nutrisi,-,berisiko
-R59,>35,18.5-24.9,tidak ada,gizi seimbang,stabil,waspada
-R60,>35,18.5-24.9,tidak ada,gizi seimbang,tidak stabil,berisiko
-R61,>35,>24.9,ada,-,-,berisiko
-R62,>35,>24.9,tidak ada,gizi seimbang,stabil,waspada
-R63,>35,>24.9,tidak ada,gizi seimbang,tidak stabil,berisiko
-R64,>35,>24.9,tidak ada,rendah nutrisi,-,berisiko
+rule,usia_ibu,imt,riwayat_penyakit,konsumsi_makanan,ketidakstabilan_mental,faktor_ibu,cf
+R22,<20,<18.5,ada,-,-,berisiko,"0,85"
+R23,<20,<18.5,tidak ada,gizi seimbang,stabil,waspada,"0,85"
+R24,<20,<18.5,tidak ada,gizi seimbang,tidak stabil,berisiko,"0,85"
+R25,<20,<18.5,tidak ada,rendah nutrisi,-,berisiko,"0,85"
+R26,<20,18.5-24.9,ada,gizi seimbang,stabil,aman,"0,85"
+R27,<20,18.5-24.9,ada,gizi seimbang,tidak stabil,berisiko,"0,85"
+R28,<20,18.5-24.9,ada,rendah nutrisi,-,berisiko,"0,85"
+R29,<20,18.5-24.9,tidak ada,gizi seimbang,stabil,aman,"0,85"
+R30,<20,18.5-24.9,tidak ada,gizi seimbang,tidak stabil,waspada,"0,85"
+R31,<20,18.5-24.9,tidak ada,rendah nutrisi,stabil,waspada,"0,85"
+R32,<20,18.5-24.9,tidak ada,rendah nutrisi,tidak stabil,berisiko,"0,85"
+R33,<20,>24.9,ada,-,-,berisiko,"0,85"
+R34,<20,>24.9,tidak ada,gizi seimbang,stabil,waspada,"0,85"
+R35,<20,>24.9,tidak ada,gizi seimbang,tidak stabil,berisiko,"0,85"
+R36,<20,>24.9,tidak ada,rendah nutrisi,-,berisiko,"0,85"
+R37,20-35,<18.5,ada/tidak ada,gizi seimbang,stabil,waspada,"0,85"
+R38,20-35,<18.5,ada/tidak ada,gizi seimbang,tidak stabil,berisiko,"0,85"
+R39,20-35,<18.5,ada/tidak ada,rendah nutrisi,-,berisiko,"0,85"
+R40,20-35,18.5-24.9,ada,gizi seimbang,-,waspada,"0,85"
+R41,20-35,18.5-24.9,ada,rendah nutrisi,stabil,waspada,"0,85"
+R42,20-35,18.5-24.9,ada,rendah nutrisi,tidak stabil,berisiko,"0,85"
+R43,20-35,18.5-24.9,tidak ada,gizi seimbang,tidak stabil,waspada,"0,85"
+R44,20-35,18.5-24.9,tidak ada,rendah nutrisi,-,waspada,"0,85"
+R45,20-35,>24.9,ada,gizi seimbang,stabil,waspada,"0,85"
+R46,20-35,>24.9,ada,gizi seimbang,tidak stabil,berisiko,"0,85"
+R47,20-35,>24.9,ada,rendah nutrisi,-,berisiko,"0,85"
+R48,20-35,>24.9,tidak ada,gizi seimbang,stabil,aman,"0,85"
+R49,20-35,>24.9,tidak ada,gizi seimbang,tidak stabil,waspada,"0,85"
+R50,20-35,>24.9,tidak ada,rendah nutrisi,stabil,waspada,"0,85"
+R51,20-35,>24.9,tidak ada,rendah nutrisi,tidak stabil,berisiko,"0,85"
+R52,>35,<18.5,ada,gizi seimbang,-,berisiko,"0,85"
+R53,>35,<18.5,tidak ada,gizi seimbang,stabil,waspada,"0,85"
+R54,>35,<18.5,tidak ada,gizi seimbang,tidak stabil,berisiko,"0,85"
+R55,>35,<18.5,tidak ada,rendah nutrisi,-,berisiko,"0,85"
+R56,>35,18.5-24.9,ada,gizi seimbang,stabil,waspada,"0,85"
+R57,>35,18.5-24.9,ada,gizi seimbang,tidak stabil,berisiko,"0,85"
+R58,>35,18.5-24.9,ada,rendah nutrisi,-,berisiko,"0,85"
+R59,>35,18.5-24.9,tidak ada,gizi seimbang,stabil,waspada,"0,85"
+R60,>35,18.5-24.9,tidak ada,gizi seimbang,tidak stabil,berisiko,"0,85"
+R61,>35,>24.9,ada,-,-,berisiko,"0,85"
+R62,>35,>24.9,tidak ada,gizi seimbang,stabil,waspada,"0,85"
+R63,>35,>24.9,tidak ada,gizi seimbang,tidak stabil,berisiko,"0,85"
+R64,>35,>24.9,tidak ada,rendah nutrisi,-,berisiko,"0,85"

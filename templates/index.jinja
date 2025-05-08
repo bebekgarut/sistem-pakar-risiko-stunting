@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Risiko Stunting</title>
-    <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet" />
   </head>
   <body class="bg-orange-200">
     <div class="p-4">
@@ -15,11 +15,17 @@
                 <img src="{{ url_for('static', filename='img/usia ibu.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
                 <label class="mb-1 text-amber-600 font-semibold text-lg">Usia Ibu</label>
                 <input type="number" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400" placeholder="Usia Ibu" name="usia_ibu" />
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_usia_ibu" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
               <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
                 <img src="{{ url_for('static', filename='img/imt.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
                 <label class="mb-1 text-amber-600 font-semibold text-lg">Index Masa Tubuh</label>
                 <input type="number" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400" placeholder="Index Masa Tubuh" name="imt" />
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_imt" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
               <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
                 <img src="{{ url_for('static', filename='img/riwayat penyakit.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
@@ -29,6 +35,9 @@
                   <option value="ada">Ada</option>
                   <option value="tidak ada">Tidak Ada</option>
                 </select>
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_riwayat_penyakit" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
               <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
                 <img src="{{ url_for('static', filename='img/konsumsi makanan.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
@@ -38,6 +47,9 @@
                   <option value="gizi seimbang">Gizi Seimbang</option>
                   <option value="rendah nutrisi">Rendah Nutrisi</option>
                 </select>
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_konsumsi_makanan" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
 
               <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
@@ -48,6 +60,9 @@
                   <option value="stabil">Stabil</option>
                   <option value="tidak stabil">Tidak Stabil</option>
                 </select>
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_ketidakstabilan_mental" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
 
               <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
@@ -59,6 +74,9 @@
                   <option value="pasif">Pasif</option>
                   <option value="tidak terpapar">Tidak Terpapar</option>
                 </select>
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_terpapar" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
               <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
                 <img src="{{ url_for('static', filename='img/sanitasi.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
@@ -68,6 +86,9 @@
                   <option value="baik">Baik</option>
                   <option value="buruk">Buruk</option>
                 </select>
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_sanitasi" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
               <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
                 <img src="{{ url_for('static', filename='img/kualitas air.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
@@ -77,6 +98,9 @@
                   <option value="bersih">Bersih</option>
                   <option value="tidak bersih">Tidak Bersih</option>
                 </select>
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_kualitas_air" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
               <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
                 <img src="{{ url_for('static', filename='img/usia kehamilan.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
@@ -87,11 +111,17 @@
                   <option value="trimester 2">Trimester 2</option>
                   <option value="trimester 3">Trimester 3</option>
                 </select>
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_usia_kehamilan" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
               <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
                 <img src="{{ url_for('static', filename='img/frekuensi.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
                 <label class="mb-1 text-amber-600 font-semibold text-lg">Frekuensi Pemeriksaan</label>
                 <input type="number" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400" placeholder="Pada trimester sekarang" name="frekuensi_pemeriksaan" />
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_frekuensi_pemeriksaan" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
               <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl col-start-2">
                 <img src="{{ url_for('static', filename='img/konsumsi suplemen.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
@@ -101,11 +131,17 @@
                   <option value="ya">Ya</option>
                   <option value="tidak">Tidak</option>
                 </select>
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_konsumsi_suplemen" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
               <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
                 <img src="{{ url_for('static', filename='img/jarak kehamilan.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
                 <label class="mb-1 text-amber-600 font-semibold text-lg">Jarak Kehamilan</label>
                 <input type="number" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400" placeholder="Jarak Kehamilan" name="jarak_kehamilan" />
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_jarak_kehamilan" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
               <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
                 <img src="{{ url_for('static', filename='img/pemakaian kb.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
@@ -115,6 +151,9 @@
                   <option value="ya">Ya</option>
                   <option value="tidak">Tidak</option>
                 </select>
+                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                <input type="range" name="cf_pemakaian_kb" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                <output>1.0</output>
               </div>
             </div>
             <div class="flex justify-center items-center">
@@ -182,6 +221,9 @@
                       <option value="tidak">Tidak</option>
                     </select>
                   {% endif %}
+                  <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
                   <input type="hidden" name="premis" value="{{ pertanyaan }}" />
                   <button type="submit" class="mt-5 px-4 py-2 rounded-xl bg-amber-400 text-white font-bold">Simpan Jawaban</button>
                 </div>
