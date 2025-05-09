@@ -122,11 +122,19 @@ def index():
         'faktor_perencanaan': faktor_perencanaan,
     }
     
+    cf_ibu = fakta['faktor_ibu']['cf']
+    cf_lingkungan = fakta['faktor_lingkungan']['cf']
+    cf_pemeriksaan = fakta['faktor_pemeriksaan']['cf']
+    cf_perencanaan = fakta['faktor_perencanaan']['cf']
+    print("ini semua cf", cf_ibu, cf_lingkungan, cf_pemeriksaan, cf_perencanaan)
+    
     print(fakta_risiko)
 
     risiko = None
+    cf_risiko = 0
     for rule in rules_risiko:
         cocok_semua = True
+        cf_premis_list = []
         for k in fakta_risiko:
             if rule[k] == '-':
                 continue
@@ -134,7 +142,12 @@ def index():
                 print(rule[k])
                 cocok_semua = False
                 break
+            else:
+                cf_premis_list.append(fakta[k]['cf'])
         if cocok_semua:
+            cf_rule = float(rule.get('cf', 1))
+            cf_set_faktor = min(cf_premis_list)
+            cf_risiko = cf_set_faktor * cf_rule
             risiko = rule['risiko_stunting']
             break
 
@@ -145,7 +158,8 @@ def index():
         faktor_pemeriksaan=faktor_pemeriksaan,
         faktor_perencanaan=faktor_perencanaan,
         risiko=risiko,
-        fakta=fakta
+        fakta=fakta,
+        cf_risiko = cf_risiko
     )
 
 @app.route('/reset')
