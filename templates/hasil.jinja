@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Hasil Evaluasi</title>
-    <link href="{{ url_for('static', filename='output.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet" />
   </head>
   <body class="bg-orange-200">
@@ -20,21 +20,21 @@
       <div class="grid grid-cols-4 mb-5">
         <div class="flex justify-center items-center flex-col">
           <p class="text-xl">Faktor Ibu :</p>
-          <p class="text-xl font-semibold">{{ faktor_ibu }}</p>
+          <p class="text-xl font-semibold">{{ faktor_ibu.nilai }}.{{ faktor_ibu.cf }}</p>
         </div>
 
         <div class="flex justify-center items-center flex-col">
           <p class="text-xl">Faktor Lingkungan:</p>
-          <p class="text-xl font-semibold">{{ faktor_lingkungan }}</p>
+          <p class="text-xl font-semibold">{{ faktor_lingkungan.nilai }}{{ faktor_lingkungan.cf }}</p>
         </div>
 
         <div class="flex justify-center items-center flex-col">
           <p class="text-xl">Faktor Pemeriksaan:</p>
-          <p class="text-xl font-semibold">{{ faktor_pemeriksaan }}</p>
+          <p class="text-xl font-semibold">{{ faktor_pemeriksaan.nilai }}{{ faktor_pemeriksaan.cf }}</p>
         </div>
         <div class="flex justify-center items-center flex-col">
           <p class="text-xl">Faktor Perencanaan:</p>
-          <p class="text-xl font-semibold">{{ faktor_perencanaan }}</p>
+          <p class="text-xl font-semibold">{{ faktor_perencanaan.nilai }}{{ faktor_perencanaan.cf }}</p>
         </div>
       </div>
 

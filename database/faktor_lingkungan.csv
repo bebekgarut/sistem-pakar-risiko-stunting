@@ -1,9 +1,9 @@
 rule,terpapar,sanitasi,kualitas_air,faktor_lingkungan,cf
-R65,tidak terpapar,baik,bersih,baik,"0,85"
-R66,tidak terpapar,baik,tidak bersih,sedang,"0,85"
-R67,tidak terpapar,buruk,bersih,sedang,"0,85"
-R68,tidak terpapar,buruk,tidak bersih,buruk,"0,85"
-R69,pasif,baik,bersih,sedang,"0,85"
-R70,pasif,baik,tidak bersih,buruk,"0,85"
-R71,pasif,buruk,-,buruk,"0,85"
-R72,aktif,-,-,buruk,"0,85"
+R65,tidak terpapar,baik,bersih,baik,0.85
+R66,tidak terpapar,baik,tidak bersih,sedang,0.85
+R67,tidak terpapar,buruk,bersih,sedang,0.85
+R68,tidak terpapar,buruk,tidak bersih,buruk,0.85
+R69,pasif,baik,bersih,sedang,0.85
+R70,pasif,baik,tidak bersih,buruk,0.85
+R71,pasif,buruk,-,buruk,0.85
+R72,aktif,-,-,buruk,0.85

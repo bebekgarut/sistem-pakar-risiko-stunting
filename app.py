@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, session
 import csv
 
 app = Flask(__name__)
-app.secret_key = 'dhsgf'
+app.secret_key = 'dhsssssdg42233qr36436ssgf'
 
 def load_rules_from(filepath):
     rules = []
@@ -25,21 +25,37 @@ def cocok(fakta_user, premis, nilai):
         return float(low) <= float(nilai_user) <= float(high)
     else:
         return nilai_user.lower() == nilai.lower()
-
+    
 def evaluasi_faktor(fakta, rules, premis_list, hasil_key):
     for rule in rules:
         cocok_semua = True
+        cf_premis_list = []
+
         for premis in premis_list:
             if rule[premis] == '-':
                 continue
-            hasil = cocok(fakta, premis, rule[premis])
-            if hasil is None:
-                return None, premis 
-            elif not hasil:
-                cocok_semua = False
-                break
+
+            if premis in fakta:
+                nilai_pengguna = fakta[premis]['nilai']
+                if nilai_pengguna == '':
+                    return None, premis
+
+                if cocok({premis: nilai_pengguna}, premis, rule[premis]):
+                    cf_premis = float(fakta[premis].get('cf', 1))
+                    cf_premis_list.append(cf_premis)
+                else:
+                    cocok_semua = False
+                    break
+            else:
+                return None, premis
+
         if cocok_semua:
+            cf_rule = float(rule.get('cf', 1))
+            cf_kesimpulan = min(cf_premis_list) * cf_rule
+            print(cf_kesimpulan)
+            fakta[hasil_key] = {'nilai': rule[hasil_key], 'cf': cf_kesimpulan}
             return rule[hasil_key], None
+
     return None, None
 
 @app.route('/', methods=['GET', 'POST'])
@@ -47,23 +63,34 @@ def index():
     session.setdefault('fakta', {})
     fakta = session['fakta']
 
+    print(f"Session fakta: {fakta}") 
+
     if request.method == 'POST':
         if 'init' in request.form:
             for key in request.form:
-                if key != 'init':
-                    session['fakta'][key] = request.form[key]
-            session['init_done'] = True 
+                if key not in ['init'] and not key.startswith('cf_'):
+                    nilai = request.form.get(key, '').strip()
+                    if nilai == '': 
+                        continue 
+                    cf = float(request.form.get(f'cf_{key}', 1.0))
+                    session['fakta'][key] = {'nilai': nilai, 'cf': cf}
+            session['init_done'] = True
             session.modified = True
             return redirect(url_for('index'))
+
         else:
-            premis = request.form['premis']
-            nilai = request.form['nilai']
+            premis = request.form.get('premis')
+            nilai = request.form.get('nilai').strip() 
+            if nilai == '': 
+                return render_template('index.jinja', fakta=fakta, pertanyaan=premis, error="Input tidak boleh kosong.")
             cf = float(request.form['cf'])
-            session['fakta'][premis] = nilai
+            session['fakta'][premis] = {'nilai': nilai, 'cf': cf}
             session.modified = True
             return redirect(url_for('index'))
-        
+
+
     if not session.get('init_done'):
+        print("Form inisialisasi belum selesai") 
         return render_template('index.jinja', fakta=fakta, pertanyaan=None, init_form=True)
 
     rules_ibu = load_rules_from('./database/faktor_ibu.csv')
@@ -87,19 +114,16 @@ def index():
     faktor_perencanaan, tanya4 = evaluasi_faktor(fakta, rules_perencanaan,
         ['jarak_kehamilan', 'pemakaian_kb'], 'faktor_perencanaan')
     if tanya4: return render_template('index.jinja', fakta=fakta, pertanyaan=tanya4)
-    
 
-    print("faktor ibu ", faktor_ibu)
-    print("faktor lingkungan ", faktor_lingkungan)
-    print("faktor pemeriksaan ", faktor_pemeriksaan)
-    print("faktor perencanaan ", faktor_perencanaan) 
-    
     fakta_risiko = {
-    'faktor_ibu': faktor_ibu,
-    'faktor_lingkungan': faktor_lingkungan,
-    'faktor_pemeriksaan': faktor_pemeriksaan,
-    'faktor_perencanaan': faktor_perencanaan,
+        'faktor_ibu': faktor_ibu,
+        'faktor_lingkungan': faktor_lingkungan,
+        'faktor_pemeriksaan': faktor_pemeriksaan,
+        'faktor_perencanaan': faktor_perencanaan,
     }
+    
+    print(fakta_risiko)
+
     risiko = None
     for rule in rules_risiko:
         cocok_semua = True
@@ -107,13 +131,14 @@ def index():
             if rule[k] == '-':
                 continue
             if rule[k].lower() != fakta_risiko[k].lower():
+                print(rule[k])
                 cocok_semua = False
                 break
         if cocok_semua:
             risiko = rule['risiko_stunting']
             break
-    print(risiko)
 
+    print(risiko)
     return render_template('hasil.jinja',
         faktor_ibu=faktor_ibu,
         faktor_lingkungan=faktor_lingkungan,
