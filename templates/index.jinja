@@ -4,250 +4,306 @@
     <title>Risiko Stunting</title>
     <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet" />
   </head>
-  <body class="bg-orange-200">
-    <div class="p-4">
-      <p class="text-center text-4xl font-bold mb-4">Risiko Stunting - Sistem Pakar</p>
-      <div>
-        <div>
-          <form method="POST">
-            <div class="grid grid-cols-5 gap-6 mb-4">
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
-                <img src="{{ url_for('static', filename='img/usia ibu.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Usia Ibu</label>
-                <input type="number" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400" placeholder="Usia Ibu" name="usia_ibu" />
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_usia_ibu" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
-                <img src="{{ url_for('static', filename='img/imt.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Index Masa Tubuh</label>
-                <input type="number" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400" placeholder="Index Masa Tubuh" name="imt" />
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_imt" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
-                <img src="{{ url_for('static', filename='img/riwayat penyakit.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Riwayat Penyakit</label>
-                <select name="riwayat_penyakit" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
-                  <option value="" disabled selected>Pilih</option>
-                  <option value="ada">Ada</option>
-                  <option value="tidak ada">Tidak Ada</option>
-                </select>
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_riwayat_penyakit" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
-                <img src="{{ url_for('static', filename='img/konsumsi makanan.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Konsumsi Makanan</label>
-                <select name="konsumsi_makanan" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
-                  <option value="" disabled selected>Pilih</option>
-                  <option value="gizi seimbang">Gizi Seimbang</option>
-                  <option value="rendah nutrisi">Rendah Nutrisi</option>
-                </select>
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_konsumsi_makanan" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
-                <img src="{{ url_for('static', filename='img/kestabilan mental.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Kestabilan Mental</label>
-                <select name="ketidakstabilan_mental" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
-                  <option value="" disabled selected>Pilih</option>
-                  <option value="stabil">Stabil</option>
-                  <option value="tidak stabil">Tidak Stabil</option>
-                </select>
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_ketidakstabilan_mental" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
-                <img src="{{ url_for('static', filename='img/terpapar.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Terpapar Asap Rokok</label>
-                <select name="terpapar" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
-                  <option value="" disabled selected>Pilih</option>
-                  <option value="aktif">Aktif</option>
-                  <option value="pasif">Pasif</option>
-                  <option value="tidak terpapar">Tidak Terpapar</option>
-                </select>
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_terpapar" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
-                <img src="{{ url_for('static', filename='img/sanitasi.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Sanitasi & Kebersihan</label>
-                <select name="sanitasi" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
-                  <option value="" disabled selected>Pilih</option>
-                  <option value="baik">Baik</option>
-                  <option value="buruk">Buruk</option>
-                </select>
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_sanitasi" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
-                <img src="{{ url_for('static', filename='img/kualitas air.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Kualitas Air</label>
-                <select name="kualitas_air" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
-                  <option value="" disabled selected>Pilih</option>
-                  <option value="bersih">Bersih</option>
-                  <option value="tidak bersih">Tidak Bersih</option>
-                </select>
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_kualitas_air" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
-                <img src="{{ url_for('static', filename='img/usia kehamilan.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Usia Kehamilan</label>
-                <select name="usia_kehamilan" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
-                  <option value="" disabled selected>Pilih</option>
-                  <option value="trimester 1">Trimester 1</option>
-                  <option value="trimester 2">Trimester 2</option>
-                  <option value="trimester 3">Trimester 3</option>
-                </select>
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_usia_kehamilan" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
-                <img src="{{ url_for('static', filename='img/frekuensi.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Frekuensi Pemeriksaan</label>
-                <input type="number" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400" placeholder="Pada trimester sekarang" name="frekuensi_pemeriksaan" />
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_frekuensi_pemeriksaan" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl col-start-2">
-                <img src="{{ url_for('static', filename='img/konsumsi suplemen.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Konsumsi Suplemen</label>
-                <select name="konsumsi_suplemen" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
-                  <option value="" disabled selected>Pilih</option>
-                  <option value="ya">Ya</option>
-                  <option value="tidak">Tidak</option>
-                </select>
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_konsumsi_suplemen" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
-                <img src="{{ url_for('static', filename='img/jarak kehamilan.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Jarak Kehamilan</label>
-                <input type="number" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400" placeholder="Jarak Kehamilan" name="jarak_kehamilan" />
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_jarak_kehamilan" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-              <div class="p-2 flex flex-col items-center bg-amber-200 rounded-b-3xl rounded-tr-4xl">
-                <img src="{{ url_for('static', filename='img/pemakaian kb.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
-                <label class="mb-1 text-amber-600 font-semibold text-lg">Pemakaian KB</label>
-                <select name="pemakaian_kb" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-8/12">
-                  <option value="" disabled selected>Pilih</option>
-                  <option value="ya">Ya</option>
-                  <option value="tidak">Tidak</option>
-                </select>
-                <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                <input type="range" name="cf_pemakaian_kb" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                <output>1.0</output>
-              </div>
-            </div>
-            <div class="flex justify-center items-center">
-              <button type="submit" name="init" class="px-2 py-1 bg-amber-700 rounded-lg border-2 border-amber-50 text-white text-lg font-semibold">Simpan dan Lanjut</button>
-            </div>
-          </form>
+  <body>
+    <nav class="text-sky-400 py-6 px-8 flex justify-between fixed top-0 left-0 right-0 z-50 bg-transparent">
+      <div class="flex">
+        <img src="{{ url_for('static', filename='img/logo.jpg') }}" class="w-14 rounded-xl" alt="" />
+        <div class="flex justify-center items-left flex-col ml-2 -space-y-1">
+          <p class="font-bree font-semibold">Expert System</p> <p class="text-white font-call text-lg font-semibold">for Early Diagnosis & Prevention of Stunting</p>
         </div>
-        {% if pertanyaan %}
-          <div id="modal" class="fixed w-full h-full inset-0 bg-black/50 items-center justify-center hidden transition-all duration-300 ease-in-out">
-            <div class="bg-white p-8 rounded-xl shadow-xl w-1/3 relative transform transition-all duration-300 ease-in-out scale-95" id="modalContent">
-              <p class="text-xl font-bold mb-4 text-amber-500">Pertanyaan</p>
-              <form method="POST">
-                <div class="flex flex-col">
-                  <label class="mb-2">{{ pertanyaan.replace('_', ' ')|capitalize }}:</label>
-                  {% if pertanyaan == 'usia_ibu' or pertanyaan == 'imt' or pertanyaan == 'frekuensi_pemeriksaan' or pertanyaan == 'jarak_kehamilan' %}
-                    <input type="number" name="nilai" class="border-2 border-amber-400 rounded-lg px-2 py-1" required />
-                  {% elif pertanyaan == 'riwayat_penyakit' %}
-                    <select name="nilai" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-full">
-                      <option value="" disabled selected>Pilih</option>
-                      <option value="ada">Ada</option>
-                      <option value="tidak ada">Tidak Ada</option>
-                    </select>
-                  {% elif pertanyaan == 'konsumsi_makanan' %}
-                    <select name="nilai" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-full">
-                      <option value="" disabled selected>Pilih</option>
-                      <option value="gizi seimbang">Gizi Seimbang</option>
-                      <option value="rendah nutrisi">Rendah Nutrisi</option>
-                    </select>
-                  {% elif pertanyaan == 'ketidakstabilan_mental' %}
-                    <select name="nilai" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-full">
-                      <option value="" disabled selected>Pilih</option>
-                      <option value="stabil">Stabil</option>
-                      <option value="tidak stabil">Tidak Stabil</option>
-                    </select>
-                  {% elif pertanyaan == 'terpapar' %}
-                    <select name="nilai" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-full">
-                      <option value="" disabled selected>Pilih</option>
-                      <option value="aktif">Aktif</option>
-                      <option value="pasif">Pasif</option>
-                      <option value="tidak terpapar">Tidak Terpapar</option>
-                    </select>
-                  {% elif pertanyaan == 'sanitasi' %}
-                    <select name="nilai" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-full">
-                      <option value="" disabled selected>Pilih</option>
-                      <option value="baik">Baik</option>
-                      <option value="buruk">Buruk</option>
-                    </select>
-                  {% elif pertanyaan == 'kualitas_air' %}
-                    <select name="nilai" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-full">
-                      <option value="" disabled selected>Pilih</option>
-                      <option value="bersih">Bersih</option>
-                      <option value="tidak bersih">Tidak Bersih</option>
-                    </select>
-                  {% elif pertanyaan == 'usia_kehamilan' %}
-                    <select name="nilai" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-full">
-                      <option value="" disabled selected>Pilih</option>
-                      <option value="trimester 1">Trimester 1</option>
-                      <option value="trimester 2">Trimester 2</option>
-                      <option value="trimester 3">Trimester 3</option>
-                    </select>
-                  {% else %}
-                    <select name="nilai" id="" class="bg-amber-50 rounded-lg text-sm p-2 border-2 border-amber-400 w-full">
-                      <option value="" disabled selected>Pilih</option>
-                      <option value="ya">Ya</option>
-                      <option value="tidak">Tidak</option>
-                    </select>
-                  {% endif %}
-                  <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
-                  <input type="range" name="cf" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
-                  <output>1.0</output>
-                  <input type="hidden" name="premis" value="{{ pertanyaan }}" />
-                  <button type="submit" class="mt-5 px-4 py-2 rounded-xl bg-amber-400 text-white font-bold">Simpan Jawaban</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        {% endif %}
-
-        {% if fakta %}
-          <hr />
-          <h3>Fakta Saat Ini:</h3>
-          <ul>
-            {% for key, value in fakta.items() %}
-              {% if value %}
-                <li>
-                  <strong>{{ key.replace('_', ' ')|capitalize }}</strong>: {{ value }}
-                </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
-          <a href="{{ url_for('reset') }}">Reset Data</a>
-        {% endif %}
       </div>
-    </div>
+      <div class="mr-36 space-x-14 font-semibold text-xl text-white relative top-1 font-call">
+        <a href="" class=" hover:text-sky-300 transition transform duration-300">Home</a>
+        <a onclick="document.getElementById('section2').scrollIntoView({ behavior: 'smooth' })"  class="transition transform duration-300 cursor-pointer hover:text-sky-300">Cek Stunting</a>
+        <a onclick="document.getElementById('section3').scrollIntoView({ behavior: 'smooth' })"  class="transition transform duration-300 cursor-pointer hover:text-sky-300">Faktor</a>
+      </div>
+    </nav>
+    <section id="section1" class="flex w-full justify-center items-center">
+      <main class="w-full min-h-screen flex flex-col items-center bg-center shadow-2xl bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90%">
+        <div class="py-20 px-20 mt-32 flex">
+          <div class="w-3/5">
+            <p class="text-4xl font-bold text-sky-100 font-lexend mb-2">Sistem Pakar Untuk Diagnosis Dini & Pencengah Stunting Melalui Ibu Hamil</p>
+            <p class="text-indigo-950 font-semibold indent-8 text-justify">Stunting adalah masalah gizi kronis pada anak yang ditandai dengan tinggi badan di bawah standar usia. Stunting tidak hanya berdampak pada pertumbuhan fisik anak, tetapi juga berpengaruh terhadap perkembangan kognitif, produktivitas ekonomi, dan kualitas hidup di masa depan.</p>
+            <p class="text-indigo-950 font-semibold indent-8 text-justify">Pencegahan stunting sejak dini sangat penting, terutama dengan intervensi yang dimulai sejak masa kehamilan. Ibu hamil merupakan kelompok rentan terhadap risiko melahirkan anak stunting karena kondisi gizi, kesehatan, dan lingkungan mereka secara langsung mempengaruhi pertumbuhan janin. Sayangnya, masih banyak ibu hamil yang tidak menyadari faktor risiko ini akibat keterbatasan informasi, akses layanan kesehatan yang kurang optimal, dan pola makan</p>
+            <p class="text-indigo-950 font-semibold indent-8 text-justify mb-5">Sistem pakar ini dirancang untuk membantu ibu hamil dalam mendeteksi risiko stunting lebih awal serta memberikan rekomendasi pencegahan yang sesuai dengan kondisi ibu hamil. Dengan memanfaatkan kecerdasan buatan, sistem ini akan menganalisis berbagai faktor risiko guna memberikan solusi pencegahan yang lebih efektif.</p>
+            <a onclick="document.getElementById('section2').scrollIntoView({ behavior: 'smooth' })" class="cursor-pointer px-4 py-2 rounded-lg font-semibold font-call text-white bg-gradient-to-r from-sky-500 via-sky-400 to-sky-500 transition transform hover:brightness-110 duration-300">Cek Risiko Stunting 🩺</a>
+          </div>
+          <div class="w-2/5 flex justify-center items-center">
+            <img src="{{ url_for('static', filename='img/sec1.png') }}" class="w-full relative bottom-20" alt="" />
+          </div>
+        </div>
+      </main>
+    </section>
+    <section id="section2" class="flex w-full justify-center items-center">
+      <main class="w-full min-h-screen flex flex-col items-center bg-center shadow-2xl bg-radial-[at_25%_25%] from-white to-sky-100 to-75%">
+        <div class="px-20 py-10">
+          <p class="text-center text-4xl font-bold mb-6 font-call text-sky-900">Cek Risiko Stunting</p>
+          <div>
+            <form method="POST">
+              <div class="grid grid-cols-5 gap-6 mb-4">
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/usia ibu.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Usia Ibu</label>
+                  <input type="number" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400" placeholder="Usia Ibu" name="usia_ibu" />
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_usia_ibu" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/imt.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Index Masa Tubuh</label>
+                  <input type="number" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400" placeholder="Index Masa Tubuh" name="imt" />
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_imt" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/riwayat penyakit.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Riwayat Penyakit</label>
+                  <select name="riwayat_penyakit" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-9/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="ada">Ada</option>
+                    <option value="tidak ada">Tidak Ada</option>
+                  </select>
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_riwayat_penyakit" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/konsumsi makanan.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Konsumsi Makanan</label>
+                  <select name="konsumsi_makanan" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-9/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="gizi seimbang">Gizi Seimbang</option>
+                    <option value="rendah nutrisi">Rendah Nutrisi</option>
+                  </select>
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_konsumsi_makanan" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/kestabilan mental.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Kestabilan Mental</label>
+                  <select name="ketidakstabilan_mental" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-9/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="stabil">Stabil</option>
+                    <option value="tidak stabil">Tidak Stabil</option>
+                  </select>
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_ketidakstabilan_mental" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/terpapar.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Terpapar Asap Rokok</label>
+                  <select name="terpapar" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-9/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="aktif">Aktif</option>
+                    <option value="pasif">Pasif</option>
+                    <option value="tidak terpapar">Tidak Terpapar</option>
+                  </select>
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_terpapar" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/sanitasi.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Sanitasi & Kebersihan</label>
+                  <select name="sanitasi" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-9/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="baik">Baik</option>
+                    <option value="buruk">Buruk</option>
+                  </select>
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_sanitasi" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/kualitas air.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Kualitas Air</label>
+                  <select name="kualitas_air" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-9/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="bersih">Bersih</option>
+                    <option value="tidak bersih">Tidak Bersih</option>
+                  </select>
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_kualitas_air" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/usia kehamilan.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Usia Kehamilan</label>
+                  <select name="usia_kehamilan" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-9/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="trimester 1">Trimester 1</option>
+                    <option value="trimester 2">Trimester 2</option>
+                    <option value="trimester 3">Trimester 3</option>
+                  </select>
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_usia_kehamilan" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/frekuensi.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Frekuensi Pemeriksaan</label>
+                  <input type="number" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400" placeholder="Pada trimester sekarang" name="frekuensi_pemeriksaan" />
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_frekuensi_pemeriksaan" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl col-start-2">
+                  <img src="{{ url_for('static', filename='img/konsumsi suplemen.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Konsumsi Suplemen</label>
+                  <select name="konsumsi_suplemen" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-9/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="ya">Ya</option>
+                    <option value="tidak">Tidak</option>
+                  </select>
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_konsumsi_suplemen" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/jarak kehamilan.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Jarak Kehamilan</label>
+                  <input type="number" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400" placeholder="Jarak Kehamilan" name="jarak_kehamilan" />
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_jarak_kehamilan" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+                <div class="p-2 flex flex-col items-center bg-sky-200 rounded-b-3xl rounded-tr-4xl">
+                  <img src="{{ url_for('static', filename='img/pemakaian kb.jpg') }}" class="w-6/12 rounded-2xl mb-1" alt="ibu" />
+                  <label class="mb-1 text-sky-600 font-semibold text-lg">Pemakaian KB</label>
+                  <select name="pemakaian_kb" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-9/12">
+                    <option value="" disabled selected>Pilih</option>
+                    <option value="ya">Ya</option>
+                    <option value="tidak">Tidak</option>
+                  </select>
+                  <label class="mb-1 text-sm mt-1">Tingkat Keyakinan Anda (0 - 1):</label>
+                  <input type="range" name="cf_pemakaian_kb" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                  <output>1.0</output>
+                </div>
+              </div>
+              <div class="flex justify-center items-center">
+                <button type="submit" name="init" class="px-2 py-1 bg-sky-700 rounded-lg border-2 border-sky-50 text-white text-lg font-semibold transition transform hover:brightness-75 duration-300 cursor-pointer">Simpan dan Lanjut</button>
+              </div>
+            </form>
+          </div>
+          {% if pertanyaan %}
+            <div id="modal" class="fixed w-full h-full inset-0 bg-black/50 items-center justify-center hidden transition-all duration-300 ease-in-out">
+              <div class="bg-white p-8 rounded-xl shadow-xl w-1/3 relative transform transition-all duration-300 ease-in-out scale-95" id="modalContent">
+                <p class="text-xl font-bold mb-4 text-sky-500">Pertanyaan</p>
+                <form method="POST">
+                  <div class="flex flex-col">
+                    <label class="mb-2">{{ pertanyaan.replace('_', ' ')|capitalize }}:</label>
+                    {% if pertanyaan == 'usia_ibu' or pertanyaan == 'imt' or pertanyaan == 'frekuensi_pemeriksaan' or pertanyaan == 'jarak_kehamilan' %}
+                      <input type="number" name="nilai" class="border-2 border-sky-400 rounded-lg px-2 py-1" required />
+                    {% elif pertanyaan == 'riwayat_penyakit' %}
+                      <select name="nilai" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-full">
+                        <option value="" disabled selected>Pilih</option>
+                        <option value="ada">Ada</option>
+                        <option value="tidak ada">Tidak Ada</option>
+                      </select>
+                    {% elif pertanyaan == 'konsumsi_makanan' %}
+                      <select name="nilai" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-full">
+                        <option value="" disabled selected>Pilih</option>
+                        <option value="gizi seimbang">Gizi Seimbang</option>
+                        <option value="rendah nutrisi">Rendah Nutrisi</option>
+                      </select>
+                    {% elif pertanyaan == 'ketidakstabilan_mental' %}
+                      <select name="nilai" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-full">
+                        <option value="" disabled selected>Pilih</option>
+                        <option value="stabil">Stabil</option>
+                        <option value="tidak stabil">Tidak Stabil</option>
+                      </select>
+                    {% elif pertanyaan == 'terpapar' %}
+                      <select name="nilai" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-full">
+                        <option value="" disabled selected>Pilih</option>
+                        <option value="aktif">Aktif</option>
+                        <option value="pasif">Pasif</option>
+                        <option value="tidak terpapar">Tidak Terpapar</option>
+                      </select>
+                    {% elif pertanyaan == 'sanitasi' %}
+                      <select name="nilai" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-full">
+                        <option value="" disabled selected>Pilih</option>
+                        <option value="baik">Baik</option>
+                        <option value="buruk">Buruk</option>
+                      </select>
+                    {% elif pertanyaan == 'kualitas_air' %}
+                      <select name="nilai" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-full">
+                        <option value="" disabled selected>Pilih</option>
+                        <option value="bersih">Bersih</option>
+                        <option value="tidak bersih">Tidak Bersih</option>
+                      </select>
+                    {% elif pertanyaan == 'usia_kehamilan' %}
+                      <select name="nilai" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-full">
+                        <option value="" disabled selected>Pilih</option>
+                        <option value="trimester 1">Trimester 1</option>
+                        <option value="trimester 2">Trimester 2</option>
+                        <option value="trimester 3">Trimester 3</option>
+                      </select>
+                    {% else %}
+                      <select name="nilai" id="" class="bg-sky-50 rounded-lg text-sm p-2 border-2 border-sky-400 w-full">
+                        <option value="" disabled selected>Pilih</option>
+                        <option value="ya">Ya</option>
+                        <option value="tidak">Tidak</option>
+                      </select>
+                    {% endif %}
+                    <label class="mb-2">Tingkat Keyakinan Anda (0 - 1):</label>
+                    <input type="range" name="cf" min="0" max="1.0" step="0.1" value="1.0" oninput="this.nextElementSibling.value = this.value" />
+                    <output>1.0</output>
+                    <input type="hidden" name="premis" value="{{ pertanyaan }}" />
+                    <button type="submit" class="mt-5 px-4 py-2 rounded-xl bg-sky-400 text-white font-bold transition transform hover:brightness-90 duration-300 cursor-pointer">Simpan Jawaban</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if fakta %}
+            <hr />
+            <h3>Fakta Saat Ini:</h3>
+            <ul>
+              {% for key, value in fakta.items() %}
+                {% if value %}
+                  <li>
+                    <strong>{{ key.replace('_', ' ')|capitalize }}</strong>: {{ value }}
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            <a href="{{ url_for('reset') }}">Reset Data</a>
+          {% endif %}
+        </div>
+      </main>
+    </section>
+    <section id="section3" class="flex w-full justify-center items-center">
+      <main class="w-full min-h-screen flex flex-col items-center justify-center shadow-2xl bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90%">
+        <div class="mb-6">
+          <p class="text-5xl font-call font-bold text-sky-900">Faktor-Faktor yang Memengaruhi Stunting</p>
+        </div>
+        <div class="grid grid-cols-4 gap-10">
+          <div class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
+            <img src="{{ url_for('static', filename='img/faktor_ibu.jpg') }}" class="w-60 rounded-t-3xl mb-2" alt="" />
+            <p class="text-center text-xl text-white text-shadow-black font-bold mb-2">Faktor Ibu</p>
+          </div>
+          <div class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
+            <img src="{{ url_for('static', filename='img/faktor_lingkungan.jpg') }}" class="w-60 rounded-t-3xl mb-2" alt="" />
+            <p class="text-center text-xl text-white text-shadow-black font-bold mb-2">Faktor Lingkungan</p>
+          </div>
+          <div class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
+            <img src="{{ url_for('static', filename='img/faktor_pemeriksaan.jpg') }}" class="w-60 rounded-t-3xl mb-2" alt="" />
+            <p class="text-center text-xl text-white text-shadow-black font-bold mb-2">Faktor Pemeriksaan</p>
+          </div>
+          <div class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
+            <img src="{{ url_for('static', filename='img/faktor_perencanaan.jpg') }}" class="w-60 rounded-t-3xl mb-2" alt="" />
+            <p class="text-center text-xl text-white text-shadow-black font-bold mb-2">Faktor Perecanaan</p>
+          </div>
+        </div>
+      </main>
+    </section>
 
     <script>
       function openModal() {

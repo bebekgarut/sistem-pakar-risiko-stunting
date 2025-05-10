@@ -5,53 +5,56 @@
     <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css" rel="stylesheet" />
   </head>
-  <body class="bg-orange-200">
-    <div class="p-5">
-      <p class="text-center text-6xl mb-8">Hasil Evaluasi Risiko Stunting</p>
-
-      <div class="flex justify-center items-center flex-col space-y-2 mb-10">
-        <hr class="w-1/2" />
-        <p class="text-center font-semibold text-2xl">
-          🩺 Risiko Stunting: <strong>{{ risiko }}</strong>
-          {{ cf_risiko }}
-        </p>
-        <hr class="w-1/2" />
-      </div>
-
-      <div class="grid grid-cols-4 mb-5">
-        <div class="flex justify-center items-center flex-col">
-          <p class="text-xl">Faktor Ibu :</p>
-          <p class="text-xl font-semibold">{{ faktor_ibu.nilai }}.{{ faktor_ibu.cf }}</p>
-        </div>
-
-        <div class="flex justify-center items-center flex-col">
-          <p class="text-xl">Faktor Lingkungan:</p>
-          <p class="text-xl font-semibold">{{ faktor_lingkungan.nilai }}{{ faktor_lingkungan.cf }}</p>
-        </div>
-
-        <div class="flex justify-center items-center flex-col">
-          <p class="text-xl">Faktor Pemeriksaan:</p>
-          <p class="text-xl font-semibold">{{ faktor_pemeriksaan.nilai }}{{ faktor_pemeriksaan.cf }}</p>
-        </div>
-        <div class="flex justify-center items-center flex-col">
-          <p class="text-xl">Faktor Perencanaan:</p>
-          <p class="text-xl font-semibold">{{ faktor_perencanaan.nilai }}{{ faktor_perencanaan.cf }}</p>
+  <body class="border-8">
+    <nav class="text-sky-400 py-6 px-8 flex justify-between fixed top-0 left-0 right-0 z-50 bg-transparent">
+      <div class="flex">
+        <img src="{{ url_for('static', filename='img/logo.jpg') }}" class="w-14 rounded-xl" alt="" />
+        <div class="flex justify-center items-left flex-col ml-2 -space-y-1">
+          <p class="font-bree font-semibold">Expert System</p> <p class="text-white font-call text-lg font-semibold">for Early Diagnosis & Prevention of Stunting</p>
         </div>
       </div>
-
-      <div class="flex justify-center items-center mb-10">
-        <a href="{{ url_for('reset') }}" class="px-2 py-1 bg-amber-700 rounded-lg border-2 border-amber-50 text-white text-lg font-semibold"><i class="fas fa-refresh mr-2"></i>Evaluasi Ulang</a>
-      </div>
-      <div class="flex items-center justify-center flex-col">
-        <p class="text-xl">Fakta Lengkap:</p>
-        <ul>
-          {% for key, value in fakta.items() %}
-            <li>
-              - <strong>{{ key.replace('_', ' ')|capitalize }}</strong>: {{ value }}
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
+    </nav>
+    <section id="section1" class="flex w-full justify-center items-center">
+      <main class="w-full min-h-screen flex flex-col items-center bg-center shadow-2xl bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90%">
+        <div class="py-20 px-20 mt-32">
+          <p class="text-center text-6xl mb-8 font-call text-sky-50 font-semibold">Hasil Evaluasi Risiko Stunting</p>
+          <div class="flex justify-center items-center flex-col space-y-2 mb-5">
+            <p class="text-lg">🩺 Tingkat Risiko Stunting:</p>
+            <hr class="w-2/5" />
+            <p class="text-center font-semibold text-3xl">
+              <strong>{{ risiko }}</strong>
+            </p>
+            <hr class="w-2/5" />
+            <p class="text-xl">CF : {{ cf_risiko }}</p>
+          </div>
+          <div class="flex justify-center items-center mb-10">
+            <a href="{{ url_for('reset') }}" class="px-2 py-1 bg-radial-[at_25%_25%] from-white to-sky-400 to-75% rounded-lg border-2 border-amber-50 text-sky-950 font-bold text-lg"><i class="fas fa-refresh mr-2"></i>Evaluasi Ulang</a>
+          </div>
+          <div class="bg-indigo-950/30 px-4 py-2 text-indigo-950 rounded-xl border-l-8 border-l-indigo-950">
+            <p class="font-bold text-lg">Rekomendasi</p>
+            {% if risiko == 'tidak berisiko' %}
+              <p class="font-semibold">- Menjaga pola makan sehat dan mengkonsumsi nutrisi yang cukup.</p>
+              <p class="font-semibold">- Rutin melakukan pemeriksaan kehamilan sesuai jadwal.</p>
+              <p class="font-semibold">- Memastikan lingkungan tetap bersih dan mendukung kesehatan ibu serta janin.</p>
+            {% elif risiko == 'rendah' %}
+              <p class="font-semibold">- Konsultasi dengan tenaga kesehatan untuk menurunkan peluang risiko.</p>
+              <p class="font-semibold">- Menjaga pola makan sehat dan konsumsi suplemen sesuai anjuran.</p>
+              <p class="font-semibold">- Memastikan kondisi lingkungan yang baik, seperti kualitas air dan sanitasi.</p>
+              <p class="font-semibold">- Melakukan pemeriksaan kehamilan secara berkala.</p>
+            {% elif risiko == 'sedang' %}
+              <p class="font-semibold">- Meningkatkan konsumsi makanan bergizi untuk menutupi kekurangan nutrisi tertentu.</p>
+              <p class="font-semibold">- Melakukan pemeriksaan kehamilan lebih sering guna pemantauan kondisi ibu dan janin.</p>
+              <p class="font-semibold">- Menghindari faktor lingkungan yang dapat memperburuk kondisi, seperti paparan polusi atau sanitasi yang kurang baik.</p>
+              <p class="font-semibold">- Mendapatkan pendampingan dari tenaga medis atau ahli gizi untuk mengelola faktor risiko yang ada.</p>
+            {% else %}
+              <p class="font-semibold">- Segera berkonsultasi dengan tenaga medis untuk mendapatkan penanganan lebih lanjut.</p>
+              <p class="font-semibold">- Meningkatkan frekuensi pemeriksaan kehamilan guna pemantauan ketat.</p>
+              <p class="font-semibold">- Mendapatkan intervensi khusus, seperti pemberian nutrisi tambahan atau tindakan medis yang diperlukan.</p>
+              <p class="font-semibold">- Jika diperlukan, ibu hamil dapat dirujuk ke fasilitas kesehatan yang lebih lengkap untuk perawatan lebih lanjut.</p>
+            {% endif %}
+          </div>
+        </div>
+      </main>
+    </section>
   </body>
 </html>

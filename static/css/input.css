@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Cal+Sans&family=Lexend:wght@100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+
+@theme {
+     --font-bree: "Bree Serif", serif;
+     --font-call:"Cal Sans", sans-serif;
+    --font-lexend: "Lexend", sans-serif;
+}

@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, session
 import csv
 
 app = Flask(__name__)
-app.secret_key = 'dhsssssdg42233qr36436ssgf'
+app.secret_key = 'dhsssssdg42233fffds33qr36436ssgf'
 
 def load_rules_from(filepath):
     rules = []
@@ -54,7 +54,7 @@ def evaluasi_faktor(fakta, rules, premis_list, hasil_key):
             cf_kesimpulan = min(cf_premis_list) * cf_rule
             print(cf_kesimpulan)
             fakta[hasil_key] = {'nilai': rule[hasil_key], 'cf': cf_kesimpulan}
-            return rule[hasil_key], None
+            return fakta[hasil_key], None
 
     return None, None
 
@@ -138,7 +138,7 @@ def index():
         for k in fakta_risiko:
             if rule[k] == '-':
                 continue
-            if rule[k].lower() != fakta_risiko[k].lower():
+            if rule[k].lower() != fakta_risiko[k]['nilai'].lower():
                 print(rule[k])
                 cocok_semua = False
                 break
