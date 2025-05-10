@@ -273,25 +273,38 @@
           <p class="text-5xl font-call font-bold text-sky-900">Faktor-Faktor yang Memengaruhi Stunting</p>
         </div>
         <div class="grid grid-cols-4 gap-10 animasi3">
-          <div class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
+          <div onclick="openModalFaktor('ibu')" data-faktor="ibu" class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
             <img src="{{ url_for('static', filename='img/faktor_ibu.jpg') }}" class="w-60 rounded-t-3xl mb-2" alt="" />
             <p class="text-center text-xl text-white text-shadow-black font-bold mb-2">Faktor Ibu</p>
           </div>
-          <div class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
+          <div onclick="openModalFaktor('lingkungan')" data-faktor="lingkungan" class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
             <img src="{{ url_for('static', filename='img/faktor_lingkungan.jpg') }}" class="w-60 rounded-t-3xl mb-2" alt="" />
             <p class="text-center text-xl text-white text-shadow-black font-bold mb-2">Faktor Lingkungan</p>
           </div>
-          <div class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
+          <div onclick="openModalFaktor('pemeriksaan')" data-faktor="pemeriksaan" class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
             <img src="{{ url_for('static', filename='img/faktor_pemeriksaan.jpg') }}" class="w-60 rounded-t-3xl mb-2" alt="" />
             <p class="text-center text-xl text-white text-shadow-black font-bold mb-2">Faktor Pemeriksaan</p>
           </div>
-          <div class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
+          <div onclick="openModalFaktor('perencanaan')" data-faktor="perencanaan" class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
             <img src="{{ url_for('static', filename='img/faktor_perencanaan.jpg') }}" class="w-60 rounded-t-3xl mb-2" alt="" />
             <p class="text-center text-xl text-white text-shadow-black font-bold mb-2">Faktor Perecanaan</p>
           </div>
         </div>
       </main>
     </section>
+
+    <div id="modalFaktor" class="fixed w-full h-full inset-0 bg-black/50 bg-opacity-50 items-center justify-center hidden transition-all duration-300 ease-in-out">
+        <div class="bg-white py-6 px-5 rounded-xl shadow-xl w-3/4 relative transform transition-all duration-300 ease-in-out opacity-0 scale-95" id="modalContentFaktor">
+          <button class="text-2xl text-gray-500 absolute top-2 right-2" onclick="closeModalFaktor()">&times;</button>
+          <p id="modalFaktorJudul" class="text-2xl font-call text-indigo-950 font-bold mb-3">Faktor Ibu</p>
+            <div class="flex w-full space-x-3">
+              <div class="w-5/12 rounded-4xl"> <img id="modalFaktorGambar" src="{{ url_for('static', filename='img/faktor_ibu.jpg') }}" class="rounded-2xl"  alt=""></div>
+              <div class="w-7/12 text-justify mt-3 space-y-2" id="modalFaktorIsi">
+           
+            </div>
+            </div>
+        </div>
+      </div>
 
     <script>
       function openModal() {
@@ -318,38 +331,38 @@
       });
     </script>
     <script>
-  gsap.from("#judul", {
-    duration: 1,
-    y: 50,
-    opacity: 0,
-    ease: "power2.out"
-  });
+      gsap.from("#judul", {
+        duration: 1,
+        y: 50,
+        opacity: 0,
+        ease: "power2.out"
+      });
 
-  gsap.from(".paragraf", {
-    duration: 1,
-    y: 30,
-    opacity: 0,
-    stagger: 0.3,
-    delay: 0.5,
-    ease: "power2.out"
-  });
+      gsap.from(".paragraf", {
+        duration: 1,
+        y: 30,
+        opacity: 0,
+        stagger: 0.3,
+        delay: 0.5,
+        ease: "power2.out"
+      });
 
- gsap.from("#btn",  {
-  duration: 1,
-    scale: 0.8,
-    opacity: 0,
-    filter: "blur(4px)",
-    delay: 1.8,
-    ease: "elastic.out(1, 0.8)"
-  });
+    gsap.from("#btn",  {
+      duration: 1,
+        scale: 0.8,
+        opacity: 0,
+        filter: "blur(4px)",
+        delay: 1.8,
+        ease: "elastic.out(1, 0.8)"
+      });
 
-    gsap.from("#imgsec1", {
-    duration: 1.2,
-    x: 100,
-    opacity: 0,
-    delay: 1,
-    ease: "power3.out"
-  });
+        gsap.from("#imgsec1", {
+        duration: 1.2,
+        x: 100,
+        opacity: 0,
+        delay: 1,
+        ease: "power3.out"
+      });
 </script>
 
 <script>
@@ -431,5 +444,91 @@
     });
 </script>
 
-  </body>
+<script>
+ function openModalFaktor(faktor) {
+  const modal = document.getElementById('modalFaktor')
+  const modalContent = document.getElementById('modalContentFaktor')
+  const judul = document.getElementById('modalFaktorJudul')
+  const img = document.getElementById('modalFaktorGambar')
+  const isi = document.getElementById('modalFaktorIsi')
+
+
+  const data = {
+    ibu: {
+      judul: 'Faktor Ibu',
+      img: "{{ url_for('static', filename='img/faktor_ibu.jpg') }}",
+      isi: `
+        <p class="mb-2 indent-8">Faktor Ibu merupakan kondisi kesehatan fisik, gizi, dan mental ibu hamil yang secara langsung mempengaruhi perkembangan janin. Faktor ini memiliki aspek-aspek berikut:</p>
+        <p>- <strong>Riwayat Penyakit</strong>, yaitu kondisi kesehatan ibu hamil, apakah memiliki penyakit seperti anemia, hipertensi, diabetes gestasional, atau penyakit kronis lainnya, atau tidak memiliki riwayat penyakit.</p>
+        <p>- <strong>Konsumsi Makanan</strong>, yaitu pola makan ibu hamil, apakah sudah memenuhi gizi seimbang dengan asupan protein, zat besi, dan asam folat, atau masih rendah nutrisi dengan lebih banyak makanan instan.</p>
+        <p>- <strong>Usia</strong>, yaitu faktor risiko kehamilan berdasarkan rentang usia ibu, dimana ibu hamil berusia di bawah 20 tahun atau di atas 35 tahun memiliki risiko lebih tinggi dibandingkan dengan rentang usia 20-35 tahun.</p>
+        <p>- <strong>Indeks Massa Tubuh (IMT)</strong>, yaitu status berat badan ibu hamil sebelum dan selama kehamilan, apakah kurang dari 18.5 (underweight), 18.5-24.9 (normal), atau lebih dari 24.9 (overweight/obesitas), yang dapat mempengaruhi pertumbuhan janin.</p>
+        <p>- <strong>Kestabilan Mental</strong>, yaitu kondisi psikologis ibu hamil, apakah stabil atau tidak stabil akibat stres, kecemasan, atau depresi yang dapat berdampak pada kehamilan.</p>
+      `
+    },
+    lingkungan: {
+      judul: 'Faktor Lingkungan',
+      img: "{{ url_for('static', filename='img/faktor_lingkungan.jpg') }}",
+      isi: `
+        <p class="mb-2 indent-8">FFaktor lingkungan adalah kondisi tempat tinggal dan lingkungan sekitar ibu yang dapat mendukung atau menghambat kesehatannya selama kehamilan. Faktor ini memiliki aspek-aspek berikut:</p>
+        <p>- <strong> Paparan Asap Rokok</strong>, kondisi di mana ibu hamil terpapar asap rokok, yang dapat berdampak buruk pada kesehatan ibu dan janin. Faktor ini dibagi menjadi tiga kategori, tidak terpapar berarti ibu tidak terkena asap rokok sama sekali, pasif berarti ibu tidak merokok, tetapi menghirup asap rokok dari lingkungan sekitarnya, sementara aktif berarti ibu hamil sendiri yang merokok.</p>
+        <p>- <strong>Sanitasi & Kebersihan</strong>, yaitu kondisi lingkungan tempat tinggal ibu hamil, apakah dalam keadaan baik atau buruk, yang berpengaruh terhadap risiko infeksi dan kesehatan ibu serta janin.</p>
+        <p>- <strong>Kualitas Air</strong>, yaitu apakah air yang digunakan ibu hamil bersih atau tidak bersih, yang dapat mempengaruhi kesehatan dan asupan nutrisi selama kehamilan.</p>
+      `
+    },
+    pemeriksaan: {
+      judul: 'Faktor Pemeriksaan',
+      img: "{{ url_for('static', filename='img/faktor_pemeriksaan.jpg') }}",
+      isi: `
+         <p class="mb-2 indent-8">Faktor pemeriksaan adalah kesadaran dan kedisiplinan ibu dalam menjalani pemeriksaan medis secara rutin selama kehamilan. Faktor ini memiliki aspek-aspek berikut:</p>
+        <p>- <strong>Usia Kehamilan</strong>,  dibedakan menjadi trimester 1 (1-12 minggu), trimester 2 (13-28 minggu) dan trimester 3 (29-40 minggu).</p>
+        <p>- <strong>Frekuensi Pemeriksaan Kehamilan</strong>, menunjukkan apakah ibu memeriksakan kehamilan sesuai atau tidak sesuai anjuran medis berdasarkan usia kehamilannya. Setiap trimester memiliki jumlah minimal pemeriksaan yang direkomendasikan untuk memastikan kesehatan ibu dan janin, yaitu ≥2 kali (trimester 1), ≥1 kali (trimester 2), dan ≥3 kali (trimester 3).</p>
+        <p>- <strong>Konsumsi Suplemen</strong>, yaitu apakah ibu hamil mengkonsumsi suplemen seperti asam folat dan zat besi atau tidak, yang berperan penting dalam mendukung pertumbuhan janin.</p>
+      `
+    },
+    perencanaan: {
+      judul: 'Faktor Perencanaan',
+      img: "{{ url_for('static', filename='img/faktor_perencanaan.jpg') }}",
+      isi: `
+        <p class="mb-2 indent-8">Faktor perencanaan merupakan kesiapan fisik dan mental ibu dalam menghadapi kehamilan. Faktor ini memiliki aspek-aspek berikut:</p>
+        <p>- <strong>Jarak Kelahiran</strong>, yaitu selang waktu antara kehamilan sebelumnya dengan yang sekarang, apakah kurang dari 5 tahun atau lebih dari 5 tahun, yang dapat mempengaruhi kesehatan ibu dan janin.</p>
+        <p>- <strong>Pemakaian KB</strong>, apakah ibu hamil menggunakan kontrasepsi sebelum hamil atau tidak, yang berpengaruh terhadap kesiapan fisik dan kesehatan ibu.</p>
+      `
+    }
+  }
+
+  judul.innerText = data[faktor].judul
+  img.src = data[faktor].img
+  isi.innerHTML = data[faktor].isi
+
+  modal.classList.remove('hidden')
+  modal.classList.add('flex')
+  setTimeout(() => {
+    modalContent.classList.remove('opacity-0', 'scale-95')
+    modalContent.classList.add('opacity-100', 'scale-100')
+  }, 10)
+}
+
+  
+function closeModalFaktor() {
+    const modal = document.getElementById('modalFaktor')
+    const modalContent = document.getElementById('modalContentFaktor')
+  
+    modalContent.classList.remove('opacity-100', 'scale-100')
+    modalContent.classList.add('opacity-0', 'scale-95')
+  
+    setTimeout(() => {
+      modal.classList.add('hidden')
+      modal.classList.remove('flex')
+    }, 300)
+  }
+  
+window.addEventListener('click', (event) => {
+    const modal = document.getElementById('modalFaktor')
+    if (event.target === modal) {
+      closeModal()
+    }
+  })
+</script>
+</body>
 </html>

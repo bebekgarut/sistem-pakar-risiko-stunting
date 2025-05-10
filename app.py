@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, session
 import csv
 
 app = Flask(__name__)
-app.secret_key = 'dhsssssdg42233fffds33qr36436ssgf'
+app.secret_key = 'dhsssssdg4223333fffds33qr36436ssgf'
 
 def load_rules_from(filepath):
     rules = []
