@@ -3,6 +3,7 @@
   <head>
     <title>Risiko Stunting</title>
     <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   </head>
   <body>
     <nav class="text-sky-400 py-6 px-8 flex justify-between fixed top-0 left-0 right-0 z-50 bg-transparent">
@@ -22,22 +23,24 @@
       <main class="w-full min-h-screen flex flex-col items-center bg-center shadow-2xl bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90%">
         <div class="py-20 px-20 mt-32 flex">
           <div class="w-3/5">
-            <p class="text-4xl font-bold text-sky-100 font-lexend mb-2">Sistem Pakar Untuk Diagnosis Dini & Pencengah Stunting Melalui Ibu Hamil</p>
-            <p class="text-indigo-950 font-semibold indent-8 text-justify">Stunting adalah masalah gizi kronis pada anak yang ditandai dengan tinggi badan di bawah standar usia. Stunting tidak hanya berdampak pada pertumbuhan fisik anak, tetapi juga berpengaruh terhadap perkembangan kognitif, produktivitas ekonomi, dan kualitas hidup di masa depan.</p>
-            <p class="text-indigo-950 font-semibold indent-8 text-justify">Pencegahan stunting sejak dini sangat penting, terutama dengan intervensi yang dimulai sejak masa kehamilan. Ibu hamil merupakan kelompok rentan terhadap risiko melahirkan anak stunting karena kondisi gizi, kesehatan, dan lingkungan mereka secara langsung mempengaruhi pertumbuhan janin. Sayangnya, masih banyak ibu hamil yang tidak menyadari faktor risiko ini akibat keterbatasan informasi, akses layanan kesehatan yang kurang optimal, dan pola makan</p>
-            <p class="text-indigo-950 font-semibold indent-8 text-justify mb-5">Sistem pakar ini dirancang untuk membantu ibu hamil dalam mendeteksi risiko stunting lebih awal serta memberikan rekomendasi pencegahan yang sesuai dengan kondisi ibu hamil. Dengan memanfaatkan kecerdasan buatan, sistem ini akan menganalisis berbagai faktor risiko guna memberikan solusi pencegahan yang lebih efektif.</p>
-            <a onclick="document.getElementById('section2').scrollIntoView({ behavior: 'smooth' })" class="cursor-pointer px-4 py-2 rounded-lg font-semibold font-call text-white bg-gradient-to-r from-sky-500 via-sky-400 to-sky-500 transition transform hover:brightness-110 duration-300">Cek Risiko Stunting 🩺</a>
+            <p id="judul" class="text-4xl font-bold text-sky-100 font-lexend mb-2">Sistem Pakar Untuk Diagnosis Dini & Pencengah Stunting Melalui Ibu Hamil</p>
+            <p class="paragraf text-indigo-950 font-semibold indent-8 text-justify">Stunting adalah masalah gizi kronis pada anak yang ditandai dengan tinggi badan di bawah standar usia. Stunting tidak hanya berdampak pada pertumbuhan fisik anak, tetapi juga berpengaruh terhadap perkembangan kognitif, produktivitas ekonomi, dan kualitas hidup di masa depan.</p>
+            <p class="paragraf text-indigo-950 font-semibold indent-8 text-justify">Pencegahan stunting sejak dini sangat penting, terutama dengan intervensi yang dimulai sejak masa kehamilan. Ibu hamil merupakan kelompok rentan terhadap risiko melahirkan anak stunting karena kondisi gizi, kesehatan, dan lingkungan mereka secara langsung mempengaruhi pertumbuhan janin. Sayangnya, masih banyak ibu hamil yang tidak menyadari faktor risiko ini akibat keterbatasan informasi, akses layanan kesehatan yang kurang optimal, dan pola makan</p>
+            <p class="paragraf text-indigo-950 font-semibold indent-8 text-justify mb-5">Sistem pakar ini dirancang untuk membantu ibu hamil dalam mendeteksi risiko stunting lebih awal serta memberikan rekomendasi pencegahan yang sesuai dengan kondisi ibu hamil. Dengan memanfaatkan kecerdasan buatan, sistem ini akan menganalisis berbagai faktor risiko guna memberikan solusi pencegahan yang lebih efektif.</p>
+            <div id="btn">
+            <button  onclick="document.getElementById('section2').scrollIntoView({ behavior: 'smooth' })" class="cursor-pointer px-4 py-2 rounded-lg font-semibold font-call text-white bg-gradient-to-r from-sky-500 via-sky-400 to-sky-500 transition transform hover:brightness-110 duration-300 z-">Cek Risiko Stunting 🩺</button>
+            </div>
           </div>
           <div class="w-2/5 flex justify-center items-center">
-            <img src="{{ url_for('static', filename='img/sec1.png') }}" class="w-full relative bottom-20" alt="" />
+            <img src="{{ url_for('static', filename='img/sec1.png') }}" class="w-full relative bottom-20" id="imgsec1" alt="" />
           </div>
         </div>
       </main>
     </section>
-    <section id="section2" class="flex w-full justify-center items-center">
+    <section id="section2" class="flex w-full justify-center items-center opacity-0">
       <main class="w-full min-h-screen flex flex-col items-center bg-center shadow-2xl bg-radial-[at_25%_25%] from-white to-sky-100 to-75%">
         <div class="px-20 py-10">
-          <p class="text-center text-4xl font-bold mb-6 font-call text-sky-900">Cek Risiko Stunting</p>
+          <p class="text-center text-4xl font-bold mb-6 font-call text-sky-900 judul">Cek Risiko Stunting</p>
           <div>
             <form method="POST">
               <div class="grid grid-cols-5 gap-6 mb-4">
@@ -186,13 +189,16 @@
                   <output>1.0</output>
                 </div>
               </div>
-              <div class="flex justify-center items-center">
+              <div class="flex justify-center items-center" id="btn2">
                 <button type="submit" name="init" class="px-2 py-1 bg-sky-700 rounded-lg border-2 border-sky-50 text-white text-lg font-semibold transition transform hover:brightness-75 duration-300 cursor-pointer">Simpan dan Lanjut</button>
               </div>
             </form>
           </div>
-          {% if pertanyaan %}
-            <div id="modal" class="fixed w-full h-full inset-0 bg-black/50 items-center justify-center hidden transition-all duration-300 ease-in-out">
+        </div>
+      </main>
+    </section>
+     {% if pertanyaan %}
+            <div id="modal" class="fixed w-full h-full inset-0 bg-black/50 items-center justify-center hidden transition-all duration-300 ease-in-out z-50">
               <div class="bg-white p-8 rounded-xl shadow-xl w-1/3 relative transform transition-all duration-300 ease-in-out scale-95" id="modalContent">
                 <p class="text-xl font-bold mb-4 text-sky-500">Pertanyaan</p>
                 <form method="POST">
@@ -261,30 +267,12 @@
               </div>
             </div>
           {% endif %}
-
-          {% if fakta %}
-            <hr />
-            <h3>Fakta Saat Ini:</h3>
-            <ul>
-              {% for key, value in fakta.items() %}
-                {% if value %}
-                  <li>
-                    <strong>{{ key.replace('_', ' ')|capitalize }}</strong>: {{ value }}
-                  </li>
-                {% endif %}
-              {% endfor %}
-            </ul>
-            <a href="{{ url_for('reset') }}">Reset Data</a>
-          {% endif %}
-        </div>
-      </main>
-    </section>
-    <section id="section3" class="flex w-full justify-center items-center">
-      <main class="w-full min-h-screen flex flex-col items-center justify-center shadow-2xl bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90%">
-        <div class="mb-6">
+    <section id="section3" class="flex w-full justify-center items-center opacity-0">
+      <main class="w-full min-h-screen flex flex-col items-center justify-center shadow-2xl bg-radial-[at_50%_75%] from-sky-200 via-blue-400 to-indigo-900 to-90% ">
+        <div class="mb-6 animasi3">
           <p class="text-5xl font-call font-bold text-sky-900">Faktor-Faktor yang Memengaruhi Stunting</p>
         </div>
-        <div class="grid grid-cols-4 gap-10">
+        <div class="grid grid-cols-4 gap-10 animasi3">
           <div class="bg-linear-to-t from-sky-400 to-sky-700 border-2 border-slate-500 rounded-3xl transition transform hover:brightness-75 duration-300 cursor-pointer">
             <img src="{{ url_for('static', filename='img/faktor_ibu.jpg') }}" class="w-60 rounded-t-3xl mb-2" alt="" />
             <p class="text-center text-xl text-white text-shadow-black font-bold mb-2">Faktor Ibu</p>
@@ -329,5 +317,119 @@
         }
       });
     </script>
+    <script>
+  gsap.from("#judul", {
+    duration: 1,
+    y: 50,
+    opacity: 0,
+    ease: "power2.out"
+  });
+
+  gsap.from(".paragraf", {
+    duration: 1,
+    y: 30,
+    opacity: 0,
+    stagger: 0.3,
+    delay: 0.5,
+    ease: "power2.out"
+  });
+
+ gsap.from("#btn",  {
+  duration: 1,
+    scale: 0.8,
+    opacity: 0,
+    filter: "blur(4px)",
+    delay: 1.8,
+    ease: "elastic.out(1, 0.8)"
+  });
+
+    gsap.from("#imgsec1", {
+    duration: 1.2,
+    x: 100,
+    opacity: 0,
+    delay: 1,
+    ease: "power3.out"
+  });
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+        const section = document.querySelector("#section2");
+    
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    gsap.to("#section2", { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 1, 
+                        ease: "power3.out" 
+                    });
+    
+                    gsap.from("#section2 .judul", {
+                        opacity: 0,
+                        y: 50,
+                        duration: 2,
+                        stagger: 0.3,
+                        ease: "power3.out"
+                    });
+    
+                    gsap.from("#section2 .bg-sky-200", {
+                        opacity: 0,
+                        scale: 0.8,
+                        duration: 3,
+                        ease: "elastic.out(1, 0.5)",
+                        stagger: 0.3,
+                    });
+
+                       gsap.from("#section2 #btn2", {
+                        opacity: 0,
+                        y: 50,
+                        duration: 5,
+                        stagger: 0.3,
+                        ease: "power1.out"
+                    });
+    
+    
+                    observer.unobserve(section);
+                }
+            });
+        }, { threshold: 0.2 });
+    
+        observer.observe(section);
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const section = document.querySelector("#section3");
+    
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    gsap.to("#section3", { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 1, 
+                        ease: "power3.out" 
+                    });
+    
+                    gsap.from("#section3 .animasi3", {
+                        opacity: 0,
+                        y: 50,
+                        duration: 3.5,
+                        stagger: 0.3,
+                        ease: "power3.out"
+                    });
+    
+                    observer.unobserve(section);
+                }
+            });
+        }, { threshold: 0.2 });
+    
+        observer.observe(section);
+    });
+</script>
+
   </body>
 </html>
