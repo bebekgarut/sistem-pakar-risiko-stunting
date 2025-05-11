@@ -52,7 +52,6 @@ def evaluasi_faktor(fakta, rules, premis_list, hasil_key):
         if cocok_semua:
             cf_rule = float(rule.get('cf', 1))
             cf_kesimpulan = min(cf_premis_list) * cf_rule
-            print(cf_kesimpulan)
             fakta[hasil_key] = {'nilai': rule[hasil_key], 'cf': cf_kesimpulan}
             return fakta[hasil_key], None
 
@@ -62,8 +61,6 @@ def evaluasi_faktor(fakta, rules, premis_list, hasil_key):
 def index():
     session.setdefault('fakta', {})
     fakta = session['fakta']
-
-    print(f"Session fakta: {fakta}") 
 
     if request.method == 'POST':
         if 'init' in request.form:
@@ -90,7 +87,6 @@ def index():
 
 
     if not session.get('init_done'):
-        print("Form inisialisasi belum selesai") 
         return render_template('index.jinja', fakta=fakta, pertanyaan=None, init_form=True)
 
     rules_ibu = load_rules_from('./database/faktor_ibu.csv')
@@ -126,9 +122,6 @@ def index():
     cf_lingkungan = fakta['faktor_lingkungan']['cf']
     cf_pemeriksaan = fakta['faktor_pemeriksaan']['cf']
     cf_perencanaan = fakta['faktor_perencanaan']['cf']
-    print("ini semua cf", cf_ibu, cf_lingkungan, cf_pemeriksaan, cf_perencanaan)
-    
-    print(fakta_risiko)
 
     risiko = None
     cf_risiko = 0
@@ -151,7 +144,6 @@ def index():
             risiko = rule['risiko_stunting']
             break
 
-    print(risiko)
     return render_template('hasil.jinja',
         faktor_ibu=faktor_ibu,
         faktor_lingkungan=faktor_lingkungan,
